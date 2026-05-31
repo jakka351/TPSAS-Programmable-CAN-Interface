@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net481</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>TPCANConfigurator</AssemblyName>
+    <RootNamespace>TesterPresent.Configurator</RootNamespace>
+    <!-- The reused J2534 stack (PassThruMsg / SDEVICE / OBDX_DeviceDetails) uses
+         'unsafe' structs, so the whole assembly must allow unsafe blocks. -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Product>TP-CAN-2I Configurator</Product>
+    <Company>Tester Present Specialist Automotive Solutions</Company>
+    <Copyright>© 2026 Jack Leighton — Designed in Australia</Copyright>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Reuse the existing J2534 PassThru stack (namespace J2534). -->
+    <Compile Include="..\J2534\**\*.cs" />
+  </ItemGroup>
+  <!-- NOTE on System.IO.Ports: on .NET Framework 4.8.1, SerialPort lives in the
+       framework's System.dll (namespace System.IO.Ports), which SDK-style net481
+       projects reference implicitly. We therefore add NO PackageReference and NO
+       extra <Reference> — pulling the System.IO.Ports NuGet package would duplicate
+       the SerialPort type and cause a CS0433 ambiguity. The existing
+       J2534DeviceFinder.cs already relies on this framework type. -->
+</Project>
