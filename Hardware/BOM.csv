@@ -1,0 +1,65 @@
+Ref,Qty,Value,MPN,Manufacturer,Footprint,Domain,Description
+U6,1,ESP32-S3-WROOM-1-N16R8,ESP32-S3-WROOM-1-N16R8,Espressif,RF_Module:ESP32-S3-WROOM-1,Logic,MCU module dual-core LX7 Wi-Fi/BLE 16MB flash 8MB PSRAM
+U7,1,MCP2518FD,MCP2518FDT-H/SL,Microchip,Package_SO:SOIC-14_3.9x8.7mm_P1.27mm,Logic,CAN FD SPI controller channel 1
+U8,1,MCP2518FD,MCP2518FDT-H/SL,Microchip,Package_SO:SOIC-14_3.9x8.7mm_P1.27mm,Logic,CAN FD SPI controller channel 2
+U9,1,ISO1042BDWVR,ISO1042BDWVR,Texas Instruments,Package_SO:SOIC-8_5.3x5.3mm_P1.27mm,Iso1,Isolated CAN FD transceiver ch1 +/-70V bus fault 5kVrms
+U10,1,ISO1042BDWVR,ISO1042BDWVR,Texas Instruments,Package_SO:SOIC-8_5.3x5.3mm_P1.27mm,Iso2,Isolated CAN FD transceiver ch2 +/-70V bus fault 5kVrms
+U1,1,TPS54360B-Q1,TPS54360BQDDARQ1,Texas Instruments,Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm,Power,Wide-Vin 60V 3.5A buck pre-regulator to 5V
+U2,1,TLV62569,TLV62569DBVR,Texas Instruments,Package_TO_SOT_SMD:SOT-23-6,Power,5V to 3.3V 2A synchronous buck (logic rail)
+U3,1,A0505S-1WR3,A0505S-1WR3,MORNSUN,Converter_DCDC:Converter_DCDC_MORNSUN_A_SIP,Iso1,Isolated 5V-5V 1W DCDC for CAN1 bus supply
+U4,1,A0505S-1WR3,A0505S-1WR3,MORNSUN,Converter_DCDC:Converter_DCDC_MORNSUN_A_SIP,Iso2,Isolated 5V-5V 1W DCDC for CAN2 bus supply
+U5,1,LM66100,LM66100DCKR,Texas Instruments,Package_TO_SOT_SMD:SOT-363_SC-70-6,Power,Ideal-diode load switch USB 5V power-path OR
+U11,1,LM74700-Q1,LM74700QDBVRQ1,Texas Instruments,Package_TO_SOT_SMD:SOT-23-6,Power,Ideal-diode controller reverse-polarity protection
+Q1,1,CSD18532Q5B,CSD18532Q5B,Texas Instruments,Package_DFN_QFN:Texas_SON-8_5x6mm,Power,60V N-channel MOSFET reverse-polarity pass device
+D1,1,USBLC6-2SC6,USBLC6-2SC6,STMicroelectronics,Package_TO_SOT_SMD:SOT-23-6,Logic,USB D+/D- ESD protection array
+D2,1,SMCJ33A,SMCJ33A,Littelfuse,Diode_SMD:D_SMC,Power,1500W TVS unidirectional 33V standoff (load-dump clamp)
+D3,1,PESD2CAN,PESD2CAN215,Nexperia,Package_TO_SOT_SMD:SOT-23,Iso1,CAN bus ESD/TVS protection ch1
+D4,1,PESD2CAN,PESD2CAN215,Nexperia,Package_TO_SOT_SMD:SOT-23,Iso2,CAN bus ESD/TVS protection ch2
+D5,1,SMAJ5.0A,SMAJ5.0A,Littelfuse,Diode_SMD:D_SMA,Power,5V rail TVS clamp
+D6,1,SS34,SS34,Vishay,Diode_SMD:D_SMA,Power,Schottky catch/freewheel (buck) 40V 3A
+Y1,1,40MHz,ASEM1-40.000MHZ-LC-T,Abracon,Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm,Logic,40MHz CMOS oscillator for MCP2518FD (CLKO daisy-chain)
+F1,1,3A 250V,3403.0167.22,Schurter,Fuse:Fuse_Schurter_UMT-250,Power,SMD fuse 3A 250V fast (fault isolation)
+L1,1,4.7uH,74279228,Wurth Elektronik,Inductor_SMD:L_Bourns-SRP1245A,Power,Input pi-filter inductor
+L2,1,22uH,74437529203221,Wurth Elektronik,Inductor_SMD:L_Wurth_WE-PD-7345,Power,Buck inductor 22uH 3A (TPS54360)
+L3,1,2.2uH,74438335022,Wurth Elektronik,Inductor_SMD:L_Wurth_WE-MAPI_3015,Power,Buck inductor 2.2uH (TLV62569)
+J1,1,USB-C,USB4105-GF-A,GCT,Connector_USB:USB_C_Receptacle_GCT_USB4105-GF-A,Logic,USB-C 2.0 receptacle 16P SMD with through-hole tabs
+J2,1,Micro-Fit 12ckt,0430451200,Molex,Connector_Molex:Molex_Micro-Fit-3.0_2x06,Logic,Internal board header 12-circuit to harness loom
+J3,1,1x4 2.54,61300411121,Wurth Elektronik,Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical,Logic,UART service header TX/RX/GND/3V3
+J4,1,1x3 2.54,61300311121,Wurth Elektronik,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,Iso1,CAN1 termination select jumper (120R)
+J5,1,1x3 2.54,61300311121,Wurth Elektronik,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,Iso2,CAN2 termination select jumper (120R)
+SW1,1,Tactile,PTS645SL50SMTR92,C&K,Button_Switch_SMD:SW_SPST_PTS645,Logic,BOOT button (GPIO0)
+SW2,1,Tactile,PTS645SL50SMTR92,C&K,Button_Switch_SMD:SW_SPST_PTS645,Logic,RESET button (EN)
+CMC1,1,CAN CMC,ACT45B-510-2P-TL003,TDK,Inductor_SMD:L_TDK_ACT45B,Iso1,CAN1 common-mode choke 51uH
+CMC2,1,CAN CMC,ACT45B-510-2P-TL003,TDK,Inductor_SMD:L_TDK_ACT45B,Iso2,CAN2 common-mode choke 51uH
+LED1,1,Green,150060VS75000,Wurth Elektronik,LED_SMD:LED_0603_1608Metric,Logic,PWR LED green
+LED2,1,Blue,150060BS75000,Wurth Elektronik,LED_SMD:LED_0603_1608Metric,Logic,Wi-Fi LED blue
+LED3,1,Amber,150060AS75000,Wurth Elektronik,LED_SMD:LED_0603_1608Metric,Logic,CAN1 activity LED amber
+LED4,1,Amber,150060AS75000,Wurth Elektronik,LED_SMD:LED_0603_1608Metric,Logic,CAN2 activity LED amber
+LED5,1,Blue,150060BS75000,Wurth Elektronik,LED_SMD:LED_0603_1608Metric,Logic,STATUS LED blue
+R1,2,5.1k,RC0402FR-075K1L,Yageo,Resistor_SMD:R_0402_1005Metric,Logic,USB-C CC1/CC2 pull-down (5.1k each)
+R2,1,100k,RC0603FR-07100KL,Yageo,Resistor_SMD:R_0603_1608Metric,Power,Ignition divider top
+R3,1,22k,RC0603FR-0722KL,Yageo,Resistor_SMD:R_0603_1608Metric,Power,Ignition divider bottom
+R4,5,1k,RC0603FR-071KL,Yageo,Resistor_SMD:R_0603_1608Metric,Logic,LED series resistors
+R5,2,10k,RC0603FR-0710KL,Yageo,Resistor_SMD:R_0603_1608Metric,Logic,BOOT/EN pull-ups
+R6,2,10k,RC0603FR-0710KL,Yageo,Resistor_SMD:R_0603_1608Metric,Logic,MCP2518FD CS pull-ups
+R7,4,60R,RC0603FR-0760RL,Yageo,Resistor_SMD:R_0603_1608Metric,Iso,CAN split-termination 60R (2 per channel)
+R8,2,120R,RC0603FR-07120RL,Yageo,Resistor_SMD:R_0603_1608Metric,Iso,CAN selectable 120R termination
+R9,1,52.3k,RC0603FR-0752K3L,Yageo,Resistor_SMD:R_0603_1608Metric,Power,TPS54360 feedback top (5V set with R10=10k Vref0.8V)
+R10,1,10k,RC0603FR-0710KL,Yageo,Resistor_SMD:R_0603_1608Metric,Power,TPS54360 feedback bottom
+R11,1,182k,RC0603FR-07182KL,Yageo,Resistor_SMD:R_0603_1608Metric,Power,TPS54360 RT timing (~500kHz)
+R12,1,499k,RC0603FR-07499KL,Yageo,Resistor_SMD:R_0603_1608Metric,Power,TPS54360 EN UVLO top
+R13,1,75k,RC0603FR-0775KL,Yageo,Resistor_SMD:R_0603_1608Metric,Power,TPS54360 EN UVLO bottom
+R14,1,540k,RC0603FR-07540KL,Yageo,Resistor_SMD:R_0603_1608Metric,Power,TLV62569 feedback top (3.3V set with R15=120k Vref0.6V)
+R15,1,120k,RC0603FR-07120KL,Yageo,Resistor_SMD:R_0603_1608Metric,Power,TLV62569 feedback bottom
+C1,1,100uF 50V,EEH-ZC1H101P,Panasonic,Capacitor_SMD:CP_Elec_10x10.5,Power,Input bulk electrolytic (polymer hybrid)
+C2,2,10uF 50V,CGA6P3X7R1H106K250AB,TDK,Capacitor_SMD:C_1210_3225Metric,Power,Input ceramic decoupling 50V X7R
+C3,1,4.7uF 50V,CGA5L1X7R1H475K160AC,TDK,Capacitor_SMD:C_1206_3216Metric,Power,Buck bootstrap/input
+C4,1,47uF 16V,GRM32ER61C476KE15L,Murata,Capacitor_SMD:C_1210_3225Metric,Power,5V rail bulk
+C5,1,22uF 10V,GRM21BR61A226ME51L,Murata,Capacitor_SMD:C_0805_2012Metric,Power,3.3V rail bulk
+C6,1,2.2nF,CGA2B2C0G1H222J050BA,TDK,Capacitor_SMD:C_0402_1005Metric,Power,TPS54360 bootstrap/slow-start
+C7,4,100nF 50V,CGA3E2X7R1H104K080AA,TDK,Capacitor_SMD:C_0603_1608Metric,Iso,CAN split-termination cap 4.7nF / decoupling
+C8,12,100nF,CGA3E2X7R1H104K080AA,TDK,Capacitor_SMD:C_0402_1005Metric,Logic,IC decoupling 100nF (ESP32/MCP/ISO/regulators)
+C9,2,10uF 25V,GRM21BR61E106KA73L,Murata,Capacitor_SMD:C_0805_2012Metric,Iso,Isolated 5V output bulk (per ISO1042)
+C10,1,4.7uF 16V,GRM188R61C475KAAJD,Murata,Capacitor_SMD:C_0603_1608Metric,Logic,ESP32 module bulk decoupling
+C11,2,18pF,CGA2B2C0G1H180J050BA,TDK,Capacitor_SMD:C_0402_1005Metric,Logic,Oscillator load caps (if crystal variant)
+PCB,1,PCB 4-layer,TP-CAN-2I-PCB,TesterPresent,,Mechanical,4-layer FR-4 1.6mm ENIG black soldermask white silk
