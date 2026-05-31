@@ -13,8 +13,10 @@ Dual-Isolated CAN Interfaces with Serial UART, Wifi, Bluetooth and USB - Program
 
   
 ## Firmware Editor and Flash Tool. 
-Software for editing firmware, creating a firmware image and flashing it to the device.
-<img width="1180" height="760" alt="image" src="https://github.com/user-attachments/assets/744689d3-5ee9-4adf-be4f-70cea567612a" />
+Tester Present developed software for editing firmware, creating a firmware image and flashing it to the device.  
+  
+<img width="1165" height="747" alt="image" src="https://github.com/user-attachments/assets/4ee65808-1ecc-4335-a8d8-8a51b7b94a70" />
+
 
 ## Firmware
 Base firmware for the device, to which a customer layer can be added specifying custom behaviour.
