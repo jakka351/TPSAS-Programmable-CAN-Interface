@@ -1,5 +1,8 @@
 # TP-CAN-2I Configurator
 
+<img width="1180" height="760" alt="image" src="https://github.com/user-attachments/assets/b69681e6-0cf3-40cb-84dc-61e03774c9c7" />
+
+
 Windows PC configurator for the **TP-CAN-2I Programmable Dual-CAN Inline Interface**
 by *Tester Present Specialist Automotive Solutions*.
 
