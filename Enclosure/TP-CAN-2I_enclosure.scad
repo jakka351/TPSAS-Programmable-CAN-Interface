@@ -11,6 +11,13 @@
 //    set  part = "base"  | "lid" | "assembly" | "print"
 //    F6 (render) then  File > Export > STL.  Export base and lid separately for SLA.
 //  Units: millimetres.
+//
+//  MANUFACTURING MASTER:  the print-ready, validated 2-manifold meshes in
+//  ./STL/TP-CAN-2I_base.stl and ./STL/TP-CAN-2I_lid.stl are produced by the
+//  pure-Python builder ./build_enclosure.py (no OpenSCAD required) and are the
+//  authoritative parts for the case manufacturer.  This .scad is a parametric
+//  reference for editing/visualisation; its seal cross-section is modelled
+//  slightly differently but the external envelope and all features match.
 // ============================================================================
 
 part = "assembly";          // "base" | "lid" | "assembly" | "print"
@@ -41,7 +48,7 @@ inner_y = pcb_y + 2*pcb_clear;            // 54
 outer_x = inner_x + 2*wall;               // 80
 outer_y = inner_y + 2*wall;               // 60
 cavity_h = standoff_h + pcb_t + head_room; // 21.6
-base_h  = floor_t + cavity_h;             // 27.6  (rim height)
+base_h  = floor_t + cavity_h;             // 24.6  (rim height)
 
 // PCB origin inside the cavity (case coords, lower-left of inner cavity = (wall,wall))
 pcb_ox = wall + pcb_clear;                // 5
@@ -76,8 +83,8 @@ tower_pos = [ [corner_r+1.5, corner_r+1.5],
 //  Bulkhead cutout on the +X end wall.  VERIFY against the exact DT04-12PA
 //  flange-receptacle drawing before tooling.
 conn_w   = 25.0;            // cutout width  (Y)
-conn_h   = 21.0;            // cutout height (Z)
-conn_z   = floor_t + 6.0;   // cutout bottom above floor
+conn_h   = 15.0;            // cutout height (Z) - sized to fit under the rim
+conn_z   = floor_t + 3.0;   // cutout bottom above floor
 conn_flange_screw = 3.3;    // DT flange mount screws
 conn_flange_dx = 31.0;      // flange screw spacing (Y)
 
@@ -134,12 +141,11 @@ module base() {
     // hollow cavity
     translate([wall, wall, floor_t])
       rbox(inner_x, inner_y, base_h, max(0.5, corner_r-wall));
-    // gasket groove in the top rim
+    // gasket groove in the top rim (proper channel of width gasket_w: outer ring - inner ring)
     translate([0,0,base_h-gasket_d])
       difference() {
-        rbox(outer_x, outer_y, gasket_d+1, corner_r);
-        translate([wall*0.5, wall*0.5, -1])
-          rbox(outer_x-wall, outer_y-wall, gasket_d+3, corner_r-0.5);
+        translate([wall*0.5, wall*0.5, 0])
+          rbox(outer_x-wall, outer_y-wall, gasket_d+1, corner_r-0.5);
         translate([wall*0.5+gasket_w, wall*0.5+gasket_w, -1])
           rbox(outer_x-wall-2*gasket_w, outer_y-wall-2*gasket_w, gasket_d+3, corner_r-1);
       }

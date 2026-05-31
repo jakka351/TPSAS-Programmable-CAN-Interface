@@ -131,13 +131,14 @@ def rbox(x0, y0, z0, X, Y, Z, r, slices=S_CORNER):
 def corner_ear(corner, ang):
     ear_reach = 13.0          # corner pivot -> M5 hole centre
     ear_t     = 8.0
+    ear_drop  = 0.8           # ears protrude below the floor as contact feet
     boss_r    = (eyelet_od + 4.0) / 2.0      # 7
     # local: connecting slab from inside the shell out to the boss, + boss disc
-    slab = box(-2.0, -boss_r, 0.0, ear_reach+2.0, 2*boss_r, ear_t)
-    boss = cyl(ear_reach, 0.0, 0.0, ear_t, boss_r, S_CORNER)
+    slab = box(-2.0, -boss_r, -ear_drop, ear_reach+2.0, 2*boss_r, ear_t+ear_drop)
+    boss = cyl(ear_reach, 0.0, -ear_drop, ear_t, boss_r, S_CORNER)
     ear  = slab.union(boss)
     # M5 clearance hole + flush eyelet pocket
-    ear  = ear.subtract(cyl(ear_reach, 0.0, -EPS, ear_t+EPS, m5_clear_d/2.0, S_HOLE))
+    ear  = ear.subtract(cyl(ear_reach, 0.0, -ear_drop-EPS, ear_t+EPS, m5_clear_d/2.0, S_HOLE))
     ear  = ear.subtract(cyl(ear_reach, 0.0, ear_t-3.0, ear_t+EPS, eyelet_od/2.0, S_HOLE))
     ear  = turned(ear, [0, 0, 1], ang)
     ear  = moved(ear, [corner[0], corner[1], 0.0])
@@ -175,16 +176,17 @@ def build_base():
     shell = shell.subtract(box(usb_x-usb_w/2, -EPS, usb_z-usb_h/2,
                                usb_w, wall+2*EPS, usb_h))
 
-    # PCB standoffs (M3 heat-set insert pilots)
+    # PCB standoffs (M3 heat-set insert pilots) - sunk into the floor so the
+    # boss/floor join is a volume overlap (clean union), not a coincident face
     for (px, py) in pcb_holes:
-        so = cyl(px, py, floor_t, floor_t+standoff_h, standoff_d/2.0, S_HOLE)
-        so = so.subtract(cyl(px, py, floor_t-EPS, floor_t+standoff_h+EPS,
+        so = cyl(px, py, floor_t-0.6, floor_t+standoff_h, standoff_d/2.0, S_HOLE)
+        so = so.subtract(cyl(px, py, floor_t-0.6-EPS, floor_t+standoff_h+EPS,
                              m3_insert_d/2.0, S_HOLE))
         shell = shell.union(so)
 
     # Corner lid-screw towers (insert pocket in the top)
     for (px, py) in tower_pos:
-        tw = cyl(px, py, floor_t, tower_top, tower_d/2.0, S_HOLE)
+        tw = cyl(px, py, floor_t-0.6, tower_top, tower_d/2.0, S_HOLE)
         tw = tw.subtract(cyl(px, py, tower_top-6.0, tower_top+EPS,
                              m3_insert_d/2.0, S_HOLE))
         shell = shell.union(tw)
@@ -250,6 +252,121 @@ def csg_to_triangles(obj):
             tris.append((_normal(a, b, c), a, b, c))
     return tris
 
+def weld_and_clean(tris, grid=2.0, tol=1.0e-3):
+    """Weld coincident vertices and split T-junctions so the mesh is 2-manifold.
+
+    pycsg's BSP CSG returns a closed surface but stitches coplanar union/cut
+    seams with T-junctions (a long edge on one face meets two short collinear
+    edges on the neighbour).  We insert the straddling vertex into the long
+    triangle so every edge ends up shared by exactly two faces.
+    """
+    from collections import defaultdict
+
+    # 1. weld vertices on a 1e-4 grid -> integer ids
+    V, idx = [], {}
+    def vid(p):
+        k = (round(p[0], 4), round(p[1], 4), round(p[2], 4))
+        i = idx.get(k)
+        if i is None:
+            i = len(V); idx[k] = i; V.append(k)
+        return i
+    F = []
+    for _n, a, b, c in tris:
+        i, j, k = vid(a), vid(b), vid(c)
+        if i != j and j != k and i != k:
+            F.append((i, j, k))
+
+    # 2. spatial hash of vertices for collinear straddle queries
+    cells = defaultdict(list)
+    for vi, p in enumerate(V):
+        cells[(int(p[0]//grid), int(p[1]//grid), int(p[2]//grid))].append(vi)
+
+    def candidates(p, q):
+        out = set()
+        steps = int(max(abs(q[0]-p[0]), abs(q[1]-p[1]), abs(q[2]-p[2]))//grid) + 2
+        for s in range(steps+1):
+            t = s/steps
+            cx = int((p[0]+(q[0]-p[0])*t)//grid)
+            cy = int((p[1]+(q[1]-p[1])*t)//grid)
+            cz = int((p[2]+(q[2]-p[2])*t)//grid)
+            for dx in (-1, 0, 1):
+                for dy in (-1, 0, 1):
+                    for dz in (-1, 0, 1):
+                        out.update(cells.get((cx+dx, cy+dy, cz+dz), ()))
+        return out
+
+    def splits(pi, qi):
+        p, q = V[pi], V[qi]
+        dx, dy, dz = q[0]-p[0], q[1]-p[1], q[2]-p[2]
+        L2 = dx*dx + dy*dy + dz*dz
+        if L2 == 0:
+            return []
+        res = []
+        for w in candidates(p, q):
+            if w == pi or w == qi:
+                continue
+            vw = V[w]
+            wx, wy, wz = vw[0]-p[0], vw[1]-p[1], vw[2]-p[2]
+            t = (wx*dx + wy*dy + wz*dz) / L2
+            if t <= 1e-6 or t >= 1.0-1e-6:
+                continue
+            cxv, cyv, czv = wy*dz-wz*dy, wz*dx-wx*dz, wx*dy-wy*dx
+            if (cxv*cxv + cyv*cyv + czv*czv)/L2 > tol*tol:
+                continue
+            res.append((t, w))
+        res.sort()
+        return [w for _t, w in res]
+
+    # 3. re-triangulate every face that has straddling vertices on its edges
+    newF = []
+    for (i, j, k) in F:
+        si, sj, sk = splits(i, j), splits(j, k), splits(k, i)
+        if not (si or sj or sk):
+            newF.append((i, j, k)); continue
+        loop = [i] + si + [j] + sj + [k] + sk            # convex -> fan is valid
+        for m in range(1, len(loop)-1):
+            a, b, c = loop[0], loop[m], loop[m+1]
+            if a != b and b != c and a != c:
+                newF.append((a, b, c))
+
+    # 4. drop interior coincident faces: triangles sharing all three vertices
+    #    cancel in opposite-winding pairs (interior), keep the net majority.
+    def okey(f):
+        m = f.index(min(f))
+        return (f[m], f[(m+1) % 3], f[(m+2) % 3])
+    bucket = defaultdict(list)
+    for f in newF:
+        bucket[frozenset(f)].append(f)
+    finalF = []
+    for fs in bucket.values():
+        if len(fs) == 1:
+            finalF.append(fs[0]); continue
+        ref = okey(fs[0]); cw = ccw = 0; rcw = rccw = None
+        for f in fs:
+            if okey(f) == ref:
+                cw += 1; rcw = f
+            else:
+                ccw += 1; rccw = f
+        net = cw - ccw
+        finalF += [rcw]*net if net > 0 else [rccw]*(-net)
+
+    out = []
+    for (i, j, k) in finalF:
+        a, b, c = V[i], V[j], V[k]
+        out.append((_normal(a, b, c), a, b, c))
+    return out
+
+def manifold_stats(tris):
+    from collections import Counter
+    ec = Counter()
+    rnd = lambda v: (round(v[0], 3), round(v[1], 3), round(v[2], 3))
+    for _n, a, b, c in tris:
+        a, b, c = rnd(a), rnd(b), rnd(c)
+        for u, v in ((a, b), (b, c), (c, a)):
+            ec[frozenset((u, v))] += 1
+    hist = Counter(ec.values())
+    return dict(sorted(hist.items()))
+
 def write_stl(path, tris):
     with open(path, 'wb') as f:
         f.write(b'\0'*80)
@@ -278,11 +395,15 @@ if __name__ == "__main__":
         print(f"[build] {name} ...", flush=True)
         solid = builder()
         tris  = csg_to_triangles(solid)
+        tris  = weld_and_clean(tris)
         path  = os.path.join(out, f"TP-CAN-2I_{name}.stl")
         write_stl(path, tris)
         lo, hi = bbox(tris)
+        stats = manifold_stats(tris)
+        ok = (set(stats) == {2})
         print(f"  {name}: {len(tris)} triangles  "
               f"bbox X[{lo[0]:.1f},{hi[0]:.1f}] "
-              f"Y[{lo[1]:.1f},{hi[1]:.1f}] Z[{lo[2]:.1f},{hi[2]:.1f}]  "
+              f"Y[{lo[1]:.1f},{hi[1]:.1f}] Z[{lo[2]:.1f},{hi[2]:.1f}]")
+        print(f"        edge-histogram {stats}  2-manifold={ok}  "
               f"({time.time()-t0:.1f}s)  -> {os.path.relpath(path, here)}")
     print("done.")
