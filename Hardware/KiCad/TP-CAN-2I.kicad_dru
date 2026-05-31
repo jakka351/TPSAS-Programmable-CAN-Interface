@@ -1,0 +1,26 @@
+# TP-CAN-2I custom design rules (KiCad > Board Setup > Custom Rules)
+# Enforces galvanic-isolation creepage between the logic domain and each isolated
+# CAN bus domain, and between the two CAN domains. Target >=4 mm (reinforced).
+# Keep these in the project folder; KiCad auto-loads <project>.kicad_dru.
+
+(version 1)
+
+(rule "ISO creepage - CAN1 bus to all other domains"
+	(constraint clearance (min 4.0mm))
+	(condition "A.NetClass == 'CAN1_ISO' && B.NetClass != 'CAN1_ISO'"))
+
+(rule "ISO creepage - CAN2 bus to all other domains"
+	(constraint clearance (min 4.0mm))
+	(condition "A.NetClass == 'CAN2_ISO' && B.NetClass != 'CAN2_ISO'"))
+
+(rule "ISO board-edge clearance on bus nets"
+	(constraint edge_clearance (min 0.5mm))
+	(condition "A.NetClass == 'CAN1_ISO' || A.NetClass == 'CAN2_ISO'"))
+
+(rule "Power track minimum width"
+	(constraint track_width (min 0.4mm))
+	(condition "A.NetClass == 'Power'"))
+
+(rule "CAN differential minimum width"
+	(constraint track_width (min 0.3mm))
+	(condition "A.NetClass == 'CAN1_ISO' || A.NetClass == 'CAN2_ISO' || A.NetClass == 'CAN_LOGIC'"))

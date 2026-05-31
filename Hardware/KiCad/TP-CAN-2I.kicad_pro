@@ -1,0 +1,91 @@
+{
+  "board": {
+    "design_settings": {
+      "defaults": {
+        "board_outline_line_width": 0.1,
+        "copper_line_width": 0.2,
+        "copper_text_size_h": 1.0,
+        "copper_text_size_v": 1.0,
+        "copper_text_thickness": 0.15,
+        "silk_line_width": 0.15,
+        "silk_text_size_h": 1.0,
+        "silk_text_size_v": 1.0,
+        "silk_text_thickness": 0.15
+      },
+      "rules": {
+        "max_error": 0.005,
+        "min_clearance": 0.2,
+        "min_copper_edge_clearance": 0.3,
+        "min_hole_to_hole": 0.25,
+        "min_microvia_diameter": 0.2,
+        "min_microvia_drill": 0.1,
+        "min_through_hole_diameter": 0.3,
+        "min_track_width": 0.2,
+        "min_via_diameter": 0.6,
+        "min_via_drill": 0.3
+      },
+      "track_widths": [0.0, 0.2, 0.3, 0.4, 0.6, 0.8],
+      "via_dimensions": [
+        {"diameter": 0.0, "drill": 0.0},
+        {"diameter": 0.6, "drill": 0.3},
+        {"diameter": 0.8, "drill": 0.4}
+      ]
+    }
+  },
+  "boards": [],
+  "cvpcb": {"equivalence_files": []},
+  "libraries": {"pinned_footprint_libs": [], "pinned_symbol_libs": []},
+  "meta": {"filename": "TP-CAN-2I.kicad_pro", "version": 1},
+  "net_settings": {
+    "classes": [
+      {
+        "bus_width": 12.0, "clearance": 0.2, "diff_pair_gap": 0.25, "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2, "line_style": 0, "microvia_diameter": 0.3, "microvia_drill": 0.1,
+        "name": "Default", "pcb_color": "rgba(0, 0, 0, 0.000)", "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.25, "via_diameter": 0.6, "via_drill": 0.3, "wire_width": 6.0
+      },
+      {
+        "clearance": 0.3, "name": "Power", "track_width": 0.6,
+        "via_diameter": 0.8, "via_drill": 0.4,
+        "pcb_color": "rgba(220, 60, 30, 1.000)", "schematic_color": "rgba(220, 60, 30, 1.000)"
+      },
+      {
+        "clearance": 0.25, "diff_pair_gap": 0.3, "diff_pair_width": 0.3,
+        "name": "CAN_LOGIC", "track_width": 0.3,
+        "pcb_color": "rgba(60, 140, 220, 1.000)", "schematic_color": "rgba(60, 140, 220, 1.000)"
+      },
+      {
+        "clearance": 0.3, "diff_pair_gap": 0.3, "diff_pair_width": 0.4,
+        "name": "CAN1_ISO", "track_width": 0.4,
+        "pcb_color": "rgba(240, 200, 0, 1.000)", "schematic_color": "rgba(240, 200, 0, 1.000)"
+      },
+      {
+        "clearance": 0.3, "diff_pair_gap": 0.3, "diff_pair_width": 0.4,
+        "name": "CAN2_ISO", "track_width": 0.4,
+        "pcb_color": "rgba(255, 120, 0, 1.000)", "schematic_color": "rgba(255, 120, 0, 1.000)"
+      }
+    ],
+    "meta": {"version": 3},
+    "netclass_patterns": [
+      {"netclass": "Power", "pattern": "VBAT*"},
+      {"netclass": "Power", "pattern": "+5V*"},
+      {"netclass": "Power", "pattern": "+3V3"},
+      {"netclass": "CAN_LOGIC", "pattern": "CAN?_TXD"},
+      {"netclass": "CAN_LOGIC", "pattern": "CAN?_RXD"},
+      {"netclass": "CAN1_ISO", "pattern": "CAN1H"},
+      {"netclass": "CAN1_ISO", "pattern": "CAN1L"},
+      {"netclass": "CAN1_ISO", "pattern": "*ISO1*"},
+      {"netclass": "CAN2_ISO", "pattern": "CAN2H"},
+      {"netclass": "CAN2_ISO", "pattern": "CAN2L"},
+      {"netclass": "CAN2_ISO", "pattern": "*ISO2*"}
+    ]
+  },
+  "pcbnew": {"last_paths": {"gencad": "", "idf": "", "netlist": "", "specctra_dsn": "", "step": "", "vrml": ""}, "page_layout_descr_file": ""},
+  "schematic": {"legacy_lib_dir": "", "legacy_lib_list": []},
+  "sheets": [],
+  "text_variables": {
+    "MODEL": "TP-CAN-2I",
+    "REV": "A",
+    "COMPANY": "Tester Present Specialist Automotive Solutions"
+  }
+}
