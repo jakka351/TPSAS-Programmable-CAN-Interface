@@ -1,7 +1,9 @@
+<p align="right"><a href="https://testerpresent.com.au">
+<img align="right" src="https://github.com/user-attachments/assets/b5a91787-4dfc-4ea2-94ae-2bb878f5af6c" height="30%" width="30%"/>
+</a></p>
+
+
 # TP-CAN-2I Configurator
-
-<img width="1180" height="760" alt="image" src="https://github.com/user-attachments/assets/b69681e6-0cf3-40cb-84dc-61e03774c9c7" />
-
 
 Windows PC configurator for the **TP-CAN-2I Programmable Dual-CAN Inline Interface**
 by *Tester Present Specialist Automotive Solutions*.
@@ -9,6 +11,9 @@ by *Tester Present Specialist Automotive Solutions*.
 It reads, writes, backs up, and flashes the device's firmware/config over **three
 transports**, all speaking the same transport-agnostic **TP-DPP v1.0** application
 protocol (`Docs/Device_Programming_Protocol.md`):
+
+<img width="1163" height="753" alt="image" src="https://github.com/user-attachments/assets/f39820d9-7286-4f6f-bc12-dff9b868b1ba" />
+
 
 | Transport | How |
 |---|---|
