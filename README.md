@@ -2,7 +2,7 @@
 <img align="right" src="https://github.com/user-attachments/assets/b5a91787-4dfc-4ea2-94ae-2bb878f5af6c" height="30%" width="30%"/>
 </a></p>
 
-<br/>
+
 
 # TPSAS-CAN-001
 ### Tester Present Programmable CAN Interface.
