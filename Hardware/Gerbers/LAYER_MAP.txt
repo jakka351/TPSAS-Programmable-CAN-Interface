@@ -1,0 +1,16 @@
+TP-CAN-2I  Gerber / Drill Layer Map
+=====================================
+File                          KiCad Layer     Function                       Status
+--------------------------    -----------     ------------------------------ --------------------
+TP-CAN-2I-Edge_Cuts.gm1      Edge.Cuts       Board outline + milling slots  COMPLETE (geometry)
+TP-CAN-2I-F_Silkscreen.gto   F.SilkS         Top silkscreen                 PARTIAL (rings/lines; text glyphs from KiCad)
+TP-CAN-2I-F_Cu.gtl            F.Cu (L1)       Top copper signal              PLACEHOLDER
+TP-CAN-2I-In1_Cu.g2           In1.Cu (L2)     Inner GND plane                PLACEHOLDER
+TP-CAN-2I-In2_Cu.g3           In2.Cu (L3)     Inner PWR plane                PLACEHOLDER
+TP-CAN-2I-B_Cu.gbl             B.Cu  (L4)     Bottom copper signal           PLACEHOLDER
+TP-CAN-2I-F_Mask.gts           F.Mask          Top soldermask                 PLACEHOLDER
+TP-CAN-2I-B_Mask.gbs           B.Mask          Bottom soldermask              PLACEHOLDER
+TP-CAN-2I-NPTH.drl             --              NPTH Excellon drill            COMPLETE (4x M3)
+TP-CAN-2I.gbrjob               --              Gerber Job JSON                COMPLETE
+
+Stackup: 4-layer FR-4, 1.6 mm total, ENIG, black soldermask, white silkscreen
