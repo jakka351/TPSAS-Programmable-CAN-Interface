@@ -9,12 +9,14 @@
 
 
 <img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/32cf1c5c-2364-4213-abe4-9a5d0abadb23" />
-Dual-Isolated CAN Interfaces with Serial UART, Wifi, Bluetooth and USB - Programmable via Arduino IDE or the Testrr Present Tool.   
+Dual-Isolated CAN Interfaces with Serial UART, Wifi, Bluetooth and USB - Programmable via Arduino IDE or the Testrr Present Tool.     
+
+  
 ## Firmware Editor and Flash Tool. 
 Software for editing firmware, creating a firmware image and flashing it to the device.
 <img width="1180" height="760" alt="image" src="https://github.com/user-attachments/assets/744689d3-5ee9-4adf-be4f-70cea567612a" />
 
-## Firrmware
+## Firmware
 Base firmware for the device, to which a customer layer can be added specifying custom behaviour.
 
 ***
