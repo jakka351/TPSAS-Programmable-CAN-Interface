@@ -2,20 +2,15 @@
   "Header": {
     "GenerationSoftware": {
       "Vendor": "Tester Present Specialist Automotive Solutions",
-      "Application": "generate_gerbers.py",
-      "Version": "1.0"
+      "Application": "generate_pcb.py",
+      "Version": "2.0"
     },
-    "CreationDate": "2026-06-01T00:00:00Z",
-    "ProjectId": {
-      "Name": "TP-CAN-2I",
-      "GUID": "tp-can-2i-gerber-job-2026",
-      "Revision": "A"
-    }
+    "CreationDate": "2026-06-01T00:00:00Z"
   },
   "GeneralSpecs": {
     "ProjectId": {
       "Name": "TP-CAN-2I",
-      "GUID": "tp-can-2i-gerber-job-2026",
+      "GUID": "tp-can-2i-2026",
       "Revision": "A"
     },
     "Size": {
@@ -24,25 +19,8 @@
     },
     "LayerNumber": 4,
     "BoardThickness": 1.6,
-    "Finish": "ENIG",
-    "ImpedanceControlled": false
+    "Finish": "ENIG"
   },
-  "DesignRules": [
-    {
-      "Layers": "Outer",
-      "PadToPad": 0.2,
-      "PadToTrack": 0.2,
-      "TrackToTrack": 0.2,
-      "MinLineWidth": 0.25
-    },
-    {
-      "Layers": "Inner",
-      "PadToPad": 0.2,
-      "PadToTrack": 0.2,
-      "TrackToTrack": 0.2,
-      "MinLineWidth": 0.25
-    }
-  ],
   "FilesAttributes": [
     {
       "Path": "TP-CAN-2I-F_Cu.gtl",
@@ -66,13 +44,18 @@
     },
     {
       "Path": "TP-CAN-2I-F_Mask.gts",
-      "FileFunction": "Soldermask,Top",
+      "FileFunction": "SolderMask,Top",
       "FilePolarity": "Negative"
     },
     {
       "Path": "TP-CAN-2I-B_Mask.gbs",
-      "FileFunction": "Soldermask,Bot",
+      "FileFunction": "SolderMask,Bot",
       "FilePolarity": "Negative"
+    },
+    {
+      "Path": "TP-CAN-2I-F_Paste.gtp",
+      "FileFunction": "SolderPaste,Top",
+      "FilePolarity": "Positive"
     },
     {
       "Path": "TP-CAN-2I-F_Silkscreen.gto",
@@ -83,68 +66,6 @@
       "Path": "TP-CAN-2I-Edge_Cuts.gm1",
       "FileFunction": "Profile,NP",
       "FilePolarity": "Positive"
-    },
-    {
-      "Path": "TP-CAN-2I-NPTH.drl",
-      "FileFunction": "NonPlated,1,4,NPTH",
-      "FilePolarity": "Positive"
-    }
-  ],
-  "MaterialStackup": [
-    {
-      "Type": "Legend",
-      "Color": "White",
-      "Name": "F.SilkS"
-    },
-    {
-      "Type": "SolderMask",
-      "Color": "Black",
-      "Thickness": 0.01,
-      "Name": "F.Mask"
-    },
-    {
-      "Type": "Copper",
-      "Thickness": 0.035,
-      "Name": "F.Cu"
-    },
-    {
-      "Type": "Dielectric",
-      "Material": "FR4",
-      "Thickness": 0.21,
-      "Name": "dielectric 1"
-    },
-    {
-      "Type": "Copper",
-      "Thickness": 0.017,
-      "Name": "In1.Cu"
-    },
-    {
-      "Type": "Dielectric",
-      "Material": "FR4",
-      "Thickness": 1.065,
-      "Name": "core"
-    },
-    {
-      "Type": "Copper",
-      "Thickness": 0.017,
-      "Name": "In2.Cu"
-    },
-    {
-      "Type": "Dielectric",
-      "Material": "FR4",
-      "Thickness": 0.21,
-      "Name": "dielectric 2"
-    },
-    {
-      "Type": "Copper",
-      "Thickness": 0.035,
-      "Name": "B.Cu"
-    },
-    {
-      "Type": "SolderMask",
-      "Color": "Black",
-      "Thickness": 0.01,
-      "Name": "B.Mask"
     }
   ]
 }

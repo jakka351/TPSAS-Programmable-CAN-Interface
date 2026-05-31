@@ -1,9 +1,10 @@
 M48
+;FORMAT={-:-/ absolute / metric / decimal}
+;TP-CAN-2I NPTH mounting holes
 METRIC,TZ
-; TP-CAN-2I NPTH drill file
-; 4 x M3 mounting holes  Diameter 3.200 mm
 T1C3.200
 %
+G90
 G05
 T1
 X4000Y4000
