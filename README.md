@@ -5,7 +5,7 @@
 <br/><br/>
 
 # TPSAS-CAN-001
-Tester Present Programmable CAN Interface.
+### Tester Present Programmable CAN Interface.
 
 ## Software
 Software for editing firmware, creating a firmware image and flashing it to the device.
