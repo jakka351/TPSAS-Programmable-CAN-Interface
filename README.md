@@ -9,7 +9,7 @@
 
 
 <img width="1672" height="941" alt="image" src="https://github.com/user-attachments/assets/32cf1c5c-2364-4213-abe4-9a5d0abadb23" />
-Dual-Isolated CAN Interfaces with Serial UART, Wifi, Bluetooth and USB - Programmable via Arduino IDE or the Testrr Present Tool.     
+Dual-Isolated CAN Interfaces with Serial UART, Wifi, Bluetooth and USB - Programmable via Arduino IDE or the Tester Present Tool. Available from the releases tab.  
 
   
 ## Firmware Editor and Flash Tool. 
